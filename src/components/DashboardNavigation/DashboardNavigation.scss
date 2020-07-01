@@ -1,0 +1,15 @@
+#DashboardNavigation {
+  border-right: 1px solid silver;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+
+  a {
+    color: rgba(#000, .5);
+
+    &.active {
+      background-color: blue;
+      color: rgba(#FFF, 1);
+    }
+  }
+}
