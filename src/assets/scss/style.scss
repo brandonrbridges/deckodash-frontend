@@ -16,6 +16,48 @@ body {
   background-color: $bodyColor;
 }
 
+.btn {
+  border: 0;
+  padding-left: .75rem;
+  padding-right: .75rem;
+  
+  &-primary {
+    background-color: rgba($primary, .25);
+    color: $primary;
+
+    &:hover {
+      background-color: $primary;
+      color: #FFF;
+    }
+  }
+
+  &-secondary {
+    background-color: rgba($textMuted, .25);
+    color: $textMuted;
+
+    &:hover {
+      background-color: $textMuted;
+      color: #FFF;
+    }
+  }
+
+  &-success {
+    background-color: rgba($success, .25);
+    color: $success;
+
+    &:hover {
+      background-color: $success;
+      color: #FFF;
+    }
+  }
+}
+
+.dashboard-overview {
+  background-image: linear-gradient(to bottom, rgba($bgDark, 1), rgba($bgDark, .75), rgba($bgDark, .5)), url('../svgs/wood-grain.svg');
+  background-position: center;
+  background-size: cover;
+}
+
 h1, .h1,
 h2, .h2,
 h3, .h3,

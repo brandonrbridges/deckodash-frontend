@@ -1,5 +1,26 @@
+@import '../../assets/scss/variables';
+
 .navbar {
-  background-color: #242F69 !important;
+  background-color: $bgDark !important;
+
+  .dropdown-menu {
+    background-color: darken($bgDark, 5);
+    border: 0;
+
+    .dropdown-divider {
+      border-color: $bgDark;
+      border-width: 2px;
+    }
+
+    .dropdown-item {
+      color: $textMuted;
+      text-align: right;
+
+      &:hover {
+        background-color: lighten($bgDark, 10);
+      }
+    }
+  }
 
   .navbar-brand {
     font-family: ProximaNovaExtraBold;

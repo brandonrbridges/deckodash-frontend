@@ -50,8 +50,8 @@ export default class Dashboard extends React.Component {
     
     return (
       <DashboardLayout id='Dashboard'>
-        <Container fluid className='bg-dark mb-4 py-5'>
-          <h4 className='mb-5 text-white'>Welcome {name} 👋🏻</h4>
+        <Container fluid className='bg-dark dashboard-overview mb-4 py-5'>
+          <h4 className='mb-5 text-white'>Welcome, {name} 👋🏻</h4>
           <Row>
             <Col>
               <p className='h6 text-muted'>Total Revenue in {month}</p>
