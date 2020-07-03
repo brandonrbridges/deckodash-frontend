@@ -1,12 +1,21 @@
 import React from 'react'
 
+import { Container } from 'react-bootstrap'
+
 import DashboardLayout from '../../layouts/DashboardLayout'
+
+import CustomerTable from '../../components/CustomerTable/CustomerTable'
 
 export default class DashboardCustomers extends React.Component {
   render() {
     return (
       <DashboardLayout>
-        <h1>Customers</h1>
+        <Container fluid className='bg-white mb-4 py-5'>
+          <h1>Customers</h1>
+        </Container>
+        <Container fluid>
+          <CustomerTable />
+        </Container>
       </DashboardLayout>
     )
   }
