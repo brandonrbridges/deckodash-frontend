@@ -6,6 +6,14 @@
   font-family: ProximaNova;
 }
 
+a {
+  color: $bgDark;
+
+  &:hover {
+    color: lighten($bgDark, 5);
+  }
+}
+
 .bg {
   &-dark {
     background-color: $bgDark !important;
@@ -53,7 +61,7 @@ body {
 }
 
 .dashboard-overview {
-  background-image: linear-gradient(to bottom, rgba($bgDark, 1), rgba($bgDark, .75), rgba($bgDark, .5)), url('../svgs/wood-grain.svg');
+  background-image: linear-gradient(to bottom, rgba($bgDark, 1), rgba($bgDark, .6), rgba($bgDark, .2)), url('../svgs/wood-grain.svg');
   background-position: center;
   background-size: cover;
 }
