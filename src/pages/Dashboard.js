@@ -90,7 +90,7 @@ export default class Dashboard extends React.Component {
           </Row>
           <Row className='mb-4'>
             <Col>
-              <DashboardWidget title='Top Customers'>
+              <DashboardWidget title='New Customers'>
                 Hello
               </DashboardWidget>
             </Col>

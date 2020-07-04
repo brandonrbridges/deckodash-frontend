@@ -4,6 +4,7 @@ import { Button, Container } from 'react-bootstrap'
 
 import DashboardLayout from '../../layouts/DashboardLayout'
 
+import AddCustomerButton from '../../components/AddCustomerButton/AddCustomerButton'
 import CustomerTable from '../../components/CustomerTable/CustomerTable'
 
 export default class DashboardCustomers extends React.Component {
@@ -12,10 +13,11 @@ export default class DashboardCustomers extends React.Component {
       <DashboardLayout>
         <Container fluid className='bg-white mb-4 py-5'>
           <h1>Customers</h1>
-          <Button variant='success' className='float-right'>Add new customer</Button>
         </Container>
         <Container fluid>
+          <AddCustomerButton className='d-block mb-4 ml-auto' />
           <CustomerTable />
+          <AddCustomerButton className='d-block mt-4 ml-auto' />
         </Container>
       </DashboardLayout>
     )

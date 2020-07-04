@@ -14,6 +14,19 @@ a {
   }
 }
 
+.alert {
+  background-color: $bodyColor;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  border-left-width: 4px;
+  border-radius: 0;
+
+  &-info {
+    border-color: $primary;
+  }
+}
+
 .bg {
   &-dark {
     background-color: $bgDark !important;
@@ -66,6 +79,21 @@ body {
   background-size: cover;
 }
 
+.form-control {
+  &:active {
+  }
+
+  &:disabled {
+    background-color: darken($bodyColor, 2);
+    cursor: not-allowed;
+  }
+  
+  &:focus {
+    border-color: $primary;
+    box-shadow: none;
+  }
+}
+
 h1, .h1,
 h2, .h2,
 h3, .h3,
@@ -74,6 +102,26 @@ h5, .h5,
 h6, .h6 {
   color: $bgDark;
   font-family: ProximaNovaExtraBold;
+}
+
+.modal {
+  .modal-content {
+    border: 0;
+
+    .modal-header {
+      border: 0;
+      color: $bgDark;
+      font-family: ProximaNovaExtraBold;
+    }
+
+    .modal-body {
+
+    }
+
+    .modal-footer {
+      border: 0;
+    }
+  }
 }
 
 .text {

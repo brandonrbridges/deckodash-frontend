@@ -18,7 +18,8 @@ export default class Navigation extends React.Component {
         { label: 'Dashboard', url: '/dashboard' },
         { label: 'Customers', url: '/dashboard/customers' },
         { label: 'Orders', url: '/dashboard/orders' },
-        { label: 'Products', url: '/dashboard/products' }
+        { label: 'Products', url: '/dashboard/products' },
+        { label: 'Deliveries', url: '/dashboard/deliveries' }
       ]
     }
   }

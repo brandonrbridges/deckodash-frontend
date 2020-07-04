@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { Button, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 import DashboardLayout from '../../layouts/DashboardLayout'
 
+import AddProductButton from '../../components/AddProductButton/AddProductButton'
 import ProductTable from '../../components/ProductTable/ProductTable'
 
 export default class DashboardProducts extends React.Component {
@@ -12,10 +13,11 @@ export default class DashboardProducts extends React.Component {
       <DashboardLayout>
         <Container fluid className='bg-white mb-4 py-5'>
           <h1>Products</h1>
-          <Button variant='success' className='float-right'>Add new product</Button>
         </Container>
         <Container fluid>
-          <ProductTable />
+          <AddProductButton className='d-block mb-4 ml-auto' />
+          <ProductTable className='float-right' />
+          <AddProductButton className='d-block mt-4 ml-auto' />
         </Container>
       </DashboardLayout>
     )

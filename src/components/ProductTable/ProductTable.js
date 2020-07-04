@@ -40,13 +40,14 @@ export default class ProductTable extends React.Component {
             <th>Product ID</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Sale Price</th>
             <th>SKU</th>
             <th>Date Added</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {products.map(x => <OrderRow productId={x._id} name={x.name} price={x.price} sku={x.sku} dateAdded={x.date_created} key={x._id} />)}
+          {products.map(x => <OrderRow productId={x._id} name={x.name} price={x.price} salePrice={x.sale_price} sku={x.sku} dateAdded={x.date_created} key={x._id} />)}
         </tbody>
       </Table>
     )
@@ -63,6 +64,7 @@ class OrderRow extends React.Component {
         </td>
         <td>{this.props.name}</td>
         <td>£{this.props.price}</td>
+        <td>£{this.props.salePrice}</td>
         <td>{this.props.sku}</td>
         <td>{this.props.dateAdded}</td>
         <td className='text-right'>
