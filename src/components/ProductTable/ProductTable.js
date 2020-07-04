@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import Axios from 'axios'
 
+import moment from 'moment'
+
 import { Button, Table } from 'react-bootstrap'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -66,7 +68,7 @@ class OrderRow extends React.Component {
         <td>£{this.props.price}</td>
         <td>£{this.props.salePrice}</td>
         <td>{this.props.sku}</td>
-        <td>{this.props.dateAdded}</td>
+        <td>{moment(this.props.dateAdded).format('MMMM Do YYYY')} <span className='small text-muted'>({moment(this.props.dateAdded).fromNow()})</span></td>
         <td className='text-right'>
           <Link to={`/dashboard/products/${this.props.productId}`} className='btn btn-primary btn-sm'>View</Link>
           <Button variant='secondary' className='btn-sm ml-3'><FontAwesomeIcon icon={faEllipsisV} /></Button>
