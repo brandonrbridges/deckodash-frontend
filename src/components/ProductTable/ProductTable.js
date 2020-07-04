@@ -23,7 +23,7 @@ export default class ProductTable extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/products')
+    Axios.get('http://localhost:8080/api/products', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ products: response.data.products }))
   }
   

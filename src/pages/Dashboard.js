@@ -24,17 +24,23 @@ import DashboardLayout from '../layouts/DashboardLayout'
  * Component
  */
 import DashboardWidget from '../components/DashboardWidget/DashboardWidget'
+import IconBubble from '../components/IconBubble/IconBubble'
+
+/**
+ * Font Awesome
+ */
+import { faFile, faUser, faUsers } from '@fortawesome/pro-solid-svg-icons'
 
 export default class Dashboard extends React.Component {
   constructor() {
-    super()
+    super() 
 
     this.state = {
-      month: '',
-      name: 'Brandon'
+      month: null,
+      name: ''
     }
   }
-
+  
   componentDidMount() {
     let today = new Date()
     let month = moment(today).format('MMMM')
@@ -110,17 +116,19 @@ export default class Dashboard extends React.Component {
               </DashboardWidget>
             </Col>
           </Row>
-          <h4>Quick Links</h4>
           <Row>
             <Col>
+              <IconBubble icon={faUser} className='mb-3' />
               <h6>Customer Lookup</h6>
               <Link to='/dashboard'>Lookup customers</Link>
             </Col>
             <Col>
+              <IconBubble icon={faFile} className='mb-3' />
               <h6>Recent Activity</h6>
               <Link to='/dashboard'>Review recent activity</Link>
             </Col>
             <Col>
+              <IconBubble icon={faUsers} className='mb-3' />
               <h6>Manage Users</h6>
               <Link to='/dashboard'>Add or update users</Link>
             </Col>

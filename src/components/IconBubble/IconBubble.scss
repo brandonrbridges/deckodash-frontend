@@ -1,0 +1,28 @@
+@import '../../assets/scss/variables';
+
+.icon-bubble {
+  align-items: center;
+  color: $primary;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 50px;
+
+  &:before {
+    background-color: rgba($primary, .12);
+    border-radius: .75rem;
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 50px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: skewY(-12deg);
+    width: 50px;
+    z-index: -1;
+  }
+}

@@ -23,7 +23,7 @@ export default class CustomerTable extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/customers')
+    Axios.get('http://localhost:8080/api/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ customers: response.data.customers }))
   }
 
