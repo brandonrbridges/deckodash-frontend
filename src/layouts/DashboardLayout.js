@@ -4,7 +4,10 @@ import { Redirect } from 'react-router-dom'
 
 import { isAuthenticated } from '../helpers/Authentication'
 
+import { Col, Row } from 'react-bootstrap'
+
 import Navigation from '../components/Navigation/Navigation'
+import Sidebar from '../components/Sidebar/Sidebar'
 
 export default class DashboardLayout extends React.Component {
   constructor() {
@@ -20,7 +23,7 @@ export default class DashboardLayout extends React.Component {
       this.setState({ auth: false })
     }
   }
-
+  
   render() {
     let { auth } = this.state
 
@@ -30,7 +33,14 @@ export default class DashboardLayout extends React.Component {
         
         <Navigation />
 
-        {this.props.children}
+        <Row>
+          <Col className='bg-dark px-4' style={{ maxWidth: '12%' }}>
+            <Sidebar />
+          </Col>
+          <Col className='pl-0'>
+            {this.props.children}
+          </Col>
+        </Row>
       </>
     )
   }

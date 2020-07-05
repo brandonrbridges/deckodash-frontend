@@ -1,0 +1,30 @@
+@import '../../assets/scss/variables';
+
+.sidebar {
+  .nav-link {
+    color: rgba(#FFF, .5);
+    
+    &.active {
+      background-color: darken($bgDark, 5) !important;
+      border-radius: .25rem;
+      color: #FFF;
+      position: relative;
+
+      &:before {
+        background-color: $primary;
+        border-bottom-right-radius: .25rem;
+        border-top-right-radius: .25rem;
+        bottom: 0;
+        box-shadow: 2px 0 4px rgba($primary, .5);
+        content: '';
+        display: block;
+        height: calc(100% + 10px);
+        left: -8px;
+        margin: auto 0;
+        position: absolute;
+        top: 0;
+        width: 5px;
+      }
+    }
+  }
+}

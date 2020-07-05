@@ -15,7 +15,7 @@ export default class DashboardCustomers extends React.Component {
           <h1>Customers</h1>
         </Container>
         <Container fluid>
-          <AddCustomerButton className='d-block mb-4 ml-auto' />
+          <AddCustomerButton className='d-block mb-4' />
           <CustomerTable />
           <AddCustomerButton className='d-block mt-4 ml-auto' />
         </Container>

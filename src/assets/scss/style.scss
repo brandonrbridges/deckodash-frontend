@@ -35,6 +35,7 @@ a {
 
 body {
   background-color: $bodyColor;
+  overflow-x: hidden;
 }
 
 .btn {
@@ -74,15 +75,12 @@ body {
 }
 
 .dashboard-overview {
-  background-image: linear-gradient(to bottom, rgba($bgDark, 1), rgba($bgDark, .6), rgba($bgDark, .2)), url('../svgs/wood-grain.svg');
+  background-image:  linear-gradient(to bottom, rgba($bgDark, 1), rgba($bgDark, .6), rgba($bgDark, .2)), linear-gradient(to right, rgba($bgDark, 1), rgba($bgDark, .4), rgba($bgDark, .2)), url('../svgs/wood-grain.svg');
   background-position: center;
   background-size: cover;
 }
 
 .form-control {
-  &:active {
-  }
-
   &:disabled {
     background-color: darken($bodyColor, 2);
     cursor: not-allowed;

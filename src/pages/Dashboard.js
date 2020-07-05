@@ -32,39 +32,18 @@ import IconBubble from '../components/IconBubble/IconBubble'
 import { faFile, faUser, faUsers } from '@fortawesome/pro-solid-svg-icons'
 
 export default class Dashboard extends React.Component {
-  constructor() {
-    super() 
-
-    this.state = {
-      month: null,
-      name: ''
-    }
-  }
-  
-  componentDidMount() {
-    let today = new Date()
-    let month = moment(today).format('MMMM')
-
-    this.setState({ month })
-  }
-  
   render() {
-    let {
-      month,
-      name
-    } = this.state
-    
     return (
       <DashboardLayout id='Dashboard'>
         <Container fluid className='bg-dark dashboard-overview mb-4 py-5'>
-          <h4 className='mb-5 text-white'>Welcome, {name} 👋🏻</h4>
+          <h4 className='mb-5 text-white'>Welcome, {this.props.user} 👋🏻</h4>
           <Row>
             <Col>
-              <p className='h6 text-muted'>Total Revenue in {month}</p>
+              <p className='h6 text-muted'>Total Revenue in {moment(new Date()).format('MMMM')}</p>
               <p className='h1 text-white'>£1,000</p>
             </Col>
             <Col>
-              <p className='h6 text-muted'>Total Orders in {month}</p>
+              <p className='h6 text-muted'>Total Orders in {moment(new Date()).format('MMMM')}</p>
               <p className='h1 text-white'>3,451</p>
             </Col>
             <Col>

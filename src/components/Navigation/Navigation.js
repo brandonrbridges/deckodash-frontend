@@ -2,7 +2,7 @@ import React from 'react'
 
 import { NavLink, Redirect } from 'react-router-dom'
 
-import { isAuthenticated } from '../../helpers/Authentication'
+import { fetchUser, isAuthenticated } from '../../helpers/Authentication'
 
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
@@ -23,7 +23,13 @@ export default class Navigation extends React.Component {
         { label: 'Orders', url: '/dashboard/orders' },
         { label: 'Products', url: '/dashboard/products' },
         { label: 'Deliveries', url: '/dashboard/deliveries' }
-      ]
+      ],
+      user: {
+        email: null,
+        first_name: null,
+        last_name: null,
+        role: null
+      }
     }
   }
 
@@ -36,24 +42,33 @@ export default class Navigation extends React.Component {
     if(!isAuthenticated()) {
       this.setState({ auth: false })
     }
+    
+    if(fetchUser()) {
+      let jwtUser = fetchUser()
+      let newUser = this.state.user
+      newUser.email = jwtUser.email
+      newUser.first_name = jwtUser.first_name
+      newUser.last_name = jwtUser.last_name
+      this.setState({ user: newUser })
+
+      console.log(this.state.user)
+    }
   }
 
 
   render() {
     let {
       auth,
-      links
+      links,
+      user
     } = this.state 
 
     return (
       <Navbar variant='dark' className='navigation'>
-        {((isAuthenticated()) ? '' : <Redirect to='/login' />)}
+        {((auth) ? '' : <Redirect to='/login' />)}
         <NavLink to='/dashboard' className='navbar-brand'>Deckodash <span className='text-muted x-small'>Alpha 1.0</span></NavLink>
-        <Nav className='mr-auto'>
-          {links.map(x => <NavLink to={x.url} className='nav-link' activeClassName='active' key={x.label}>{x.label}</NavLink>)}
-        </Nav>
         <Nav className='ml-auto'>
-          {(isAuthenticated()) ? <LoggedInMenuItems logout={this.logout} /> : <LoggedOutMenuItems />}
+          {(auth) ? <LoggedInMenuItems user={user} logout={this.logout} /> : <LoggedOutMenuItems />}
         </Nav>
       </Navbar>
     )
@@ -62,12 +77,14 @@ export default class Navigation extends React.Component {
 
 class LoggedInMenuItems extends React.Component {
   render() {
+    let { user } = this.props
+    
     return (
       <>
         <NavLink to='/orders' className='nav-link'><FontAwesomeIcon icon={faSearch} /></NavLink>
         <NavLink to='/dashboard/settings' className='nav-link'><FontAwesomeIcon icon={faCog} /></NavLink>
         <NavLink to='/orders' className='nav-link'><FontAwesomeIcon icon={faBell} /></NavLink>
-        <NavDropdown title="Brandon" id="basic-nav-dropdown" alignRight>
+        <NavDropdown title={user.first_name} id="basic-nav-dropdown" alignRight>
           <NavDropdown.Item href="#" onClick={() => this.props.logout()}>Logout</NavDropdown.Item>
         </NavDropdown>
       </>

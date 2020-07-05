@@ -1,7 +1,16 @@
 import Axios from 'axios'
 
+import jwt from 'jsonwebtoken'
+
 export function fetchUser() {
-  
+  let decoded = jwt.decode(localStorage.getItem('x-access-token'))
+
+  if(decoded) return {
+    email: decoded.email,
+    first_name: decoded.first_name,
+    last_name: decoded.last_name,
+    role: decoded.role
+  }
 }
 
 export function isAuthenticated() {

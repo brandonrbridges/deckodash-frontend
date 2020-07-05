@@ -15,7 +15,7 @@ export default class DashboardProducts extends React.Component {
           <h1>Products</h1>
         </Container>
         <Container fluid>
-          <AddProductButton className='d-block mb-4 ml-auto' />
+          <AddProductButton className='d-block mb-4' />
           <ProductTable className='float-right' />
           <AddProductButton className='d-block mt-4 ml-auto' />
         </Container>
