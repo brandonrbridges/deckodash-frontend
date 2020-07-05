@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 
 import Axios from 'axios'
 
-import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Col, Container, Nav, Row, Tab } from 'react-bootstrap'
 
 import DashboardLayout from '../../layouts/DashboardLayout'
 
+import EditCustomerForm from '../../components/EditCustomerForm/EditCustomerForm'
 import DashboardWidget from '../../components/DashboardWidget/DashboardWidget'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -31,18 +32,7 @@ export default class DashboardCustomerSingle extends React.Component {
     .then(response => {
       let { customer } = response.data
 
-      this.setState({
-        customer,
-        first_name: customer.first_name,
-        last_name: customer.last_name,
-        address_line_one: customer.address.line_one,
-        address_line_two: customer.address.line_two,
-        address_city: customer.address.city,
-        address_county: customer.address.county,
-        address_postcode: customer.address.postcode,
-        email: customer.email,
-        phone: customer.phone
-      })
+      this.setState({ customer })
     })
   }
 
@@ -56,15 +46,6 @@ export default class DashboardCustomerSingle extends React.Component {
   render() {
     let { 
       customer,
-      first_name,
-      last_name,
-      address_line_one,
-      address_line_two,
-      address_city,
-      address_county,
-      address_postcode,
-      email,
-      phone
     } = this.state
 
     if(!customer ) {
@@ -72,82 +53,51 @@ export default class DashboardCustomerSingle extends React.Component {
     } else {
       return (
         <DashboardLayout>
-          <Container fluid className='bg-white mb-4 py-5'>
+          <Container fluid className='bg-white pt-5 pb-4'>
             <Link to='/dashboard/customers' className='d-block mb-2'><FontAwesomeIcon icon={faLongArrowLeft} className='mr-2' />Return to orders</Link>
-            <h1>{first_name + ' ' + last_name}</h1>
+            <h1>{customer.first_name + ' ' + customer.last_name}</h1>
           </Container>
-          <Container fluid>
-            <Row>
-              <Col>
-                <DashboardWidget title='Customer Notes' className='mb-4'>
-                  This is the area to enter customer notes
-                </DashboardWidget>
-                <DashboardWidget title='Quotes' className='mb-4'>
-                  No quotes found for this user
-                </DashboardWidget>
-                <DashboardWidget title='Invoices' className='mb-4'>
-                  No invoices found for this user
-                </DashboardWidget>
-                <DashboardWidget title='Deliveries'>
-                  No deliveries found for this user
-                </DashboardWidget>
-              </Col>
-              <Col>
+
+          <Tab.Container defaultActiveKey='first'>
+            <Container fluid className='bg-white mb-4'>
+              <Nav variant='tabs'>
+                <Nav.Item>
+                  <Nav.Link eventKey='first'>Summary</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey='second'>Edit Profile</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Container>
+            <Container fluid>
+            <Tab.Content>
+              <Tab.Pane eventKey='first'>
+                <Row>
+                  <Col>
+                    <DashboardWidget title='Orders' className='mb-4'>
+                      Display here: quotes, invoices, deliveries and complete orders
+                    </DashboardWidget>
+                  </Col>
+                  <Col>
+                    <DashboardWidget title='Customer Details' className='mb-4'>
+                      This is the area to display customer details
+                    </DashboardWidget>
+                    <DashboardWidget title='Customer Notes'>
+                      This is the area to enter customer notes
+                    </DashboardWidget>
+                  </Col>
+                </Row>
+                
+                
+              </Tab.Pane>
+              <Tab.Pane eventKey='second'>
                 <DashboardWidget title={`Edit ${customer.first_name} ${customer.last_name}'s details`}>
-                  <Alert variant='info'>This form is currently locked.</Alert>
-                  <Form>
-                    <Form.Row>
-                      <Col>
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control type='text' value={first_name} name='first_name' onChange={this.handleChange} disabled />
-                      </Col>
-                      <Col>
-                        <Form.Label>Last Name</Form.Label>
-                        <Form.Control type='text' value={last_name} name='last_name' onChange={this.handleChange} disabled />
-                      </Col>
-                    </Form.Row>
-                    <hr className='separator d-block my-4' />
-                    <Form.Row className='mb-4'>
-                      <Col>
-                        <Form.Label>Address Line One</Form.Label>
-                        <Form.Control type='text' value={address_line_one} name='address_line_one' onChange={this.handleChange} disabled />
-                      </Col>
-                      <Col>
-                        <Form.Label>Address Line Two</Form.Label>
-                        <Form.Control type='text' value={address_line_two} name='address_line_two' onChange={this.handleChange} disabled />
-                      </Col>
-                    </Form.Row>
-                    <Form.Row>
-                      <Col>
-                        <Form.Label>City</Form.Label>
-                        <Form.Control type='text' value={address_city} name='address_city' onChange={this.handleChange} disabled />
-                      </Col>
-                      <Col>
-                        <Form.Label>County</Form.Label>
-                        <Form.Control type='text' value={address_county} name='address_county' onChange={this.handleChange} disabled />
-                      </Col>
-                      <Col>
-                        <Form.Label>Postcode</Form.Label>
-                        <Form.Control type='text' value={address_postcode} name='address_postcode' onChange={this.handleChange} disabled />
-                      </Col>
-                    </Form.Row>
-                    <hr className='separator d-block my-4' />
-                    <Form.Row className='mb-4'>
-                      <Col>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type='text' value={email} name='email' onChange={this.handleChange} disabled />
-                      </Col>
-                      <Col>
-                        <Form.Label>Phone</Form.Label>
-                        <Form.Control type='text' value={phone} name='phone' onChange={this.handleChange} disabled />
-                      </Col>
-                    </Form.Row>
-                    <Button variant='primary' type='submit'>Update user</Button>
-                  </Form>
+                  <EditCustomerForm customerId={customer._id} />
                 </DashboardWidget>
-              </Col>
-            </Row>
-          </Container>
+              </Tab.Pane>
+            </Tab.Content>
+            </Container>
+          </Tab.Container>  
         </DashboardLayout>
       )
     }
