@@ -12,6 +12,7 @@ import DashboardOrderSingle from './pages/Dashboard/OrderSingle'
 import DashboardProducts from './pages/Dashboard/Products'
 import DashboardProductSingle from './pages/Dashboard/ProductSingle'
 import DashboardSettings from './pages/Dashboard/Settings'
+import DashboardUsers from './pages/Dashboard/Users'
 import Home from './pages/Home'
 import Login from './pages/Login'
 
@@ -69,6 +70,8 @@ export default class App extends React.Component {
           <Route exact path='/dashboard/products/:id' component={DashboardProductSingle} />
 
           <Route exact path='/dashboard/settings' component={DashboardSettings} />
+
+          <Route exact path='/dashboard/users' component={DashboardUsers} />
         </Switch>
       </Router>
     )

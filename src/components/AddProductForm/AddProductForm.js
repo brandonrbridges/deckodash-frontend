@@ -32,7 +32,7 @@ export default class AddProductForm extends React.Component {
 
     console.log(this.state)
 
-    Axios.post('http://localhost:8080/api/products/new', this.state)
+    Axios.post('http://localhost:8080/api/products/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => console.log(response))
   }
 

@@ -22,7 +22,7 @@ export default class Sidebar extends React.Component {
         { label: 'Deliveries', icon: faTruck, url: '/deliveries' },
       ],
       bottomLinks: [
-        { label: 'Staff', icon: faUsers, url: '/staff' },
+        { label: 'Users', icon: faUsers, url: '/users' },
         { label: 'Settings', icon: faCog, url: '/settings' }
       ]
     }
