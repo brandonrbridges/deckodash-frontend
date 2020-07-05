@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 import { fetchUser, isAuthenticated } from './helpers/Authentication'
 
@@ -43,13 +43,14 @@ export default class App extends React.Component {
     newUser.last_name = jwtUser.last_name
     newUser.role = jwtUser.role
     this.setState({ user: newUser })
-
-    console.log(this.state.user)
   }
 
   render() {
+    let { auth } = this.state
+
     return (
       <Router>
+        {((auth) ? '' : <Redirect to='/login' />)}
         <Switch>
           <Route exact path='/' component={Home} />
 

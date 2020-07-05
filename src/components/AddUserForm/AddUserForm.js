@@ -58,6 +58,7 @@ export default class AddUserForm extends React.Component {
         </Form.Row>
         <Form.Row className='mb-4'>
           <Col>
+            <Form.Label>Role</Form.Label>
             <Form.Control as='select' name='role' custom>
               <option value='sales'>Sales Team</option>              
               <option value='delivery'>Delivery Team</option>

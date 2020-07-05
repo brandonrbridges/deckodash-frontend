@@ -6,7 +6,7 @@ import Axios from 'axios'
 
 import moment from 'moment'
 
-import { Button, Table } from 'react-bootstrap'
+import { Dropdown, Table } from 'react-bootstrap'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faEllipsisV } from '@fortawesome/pro-solid-svg-icons'
@@ -69,7 +69,13 @@ class CustomerRow extends React.Component {
         <td>{moment(this.props.lastUpdated).format('MMMM Do YYYY')} <span className='small text-muted'>({moment(this.props.lastUpdated).fromNow()})</span></td>
         <td className='text-right'>
           <Link to={`/dashboard/customers/${this.props.id}`} className='btn btn-primary btn-sm'>View</Link>
-          <Button variant='secondary' className='btn-sm ml-3'><FontAwesomeIcon icon={faEllipsisV} /></Button>
+          {/* <Button variant='secondary' className='btn-sm ml-3'><FontAwesomeIcon icon={faEllipsisV} /></Button> */}
+          <Dropdown className='ml-3 options'>
+            <Dropdown.Toggle variant='secondary' size='sm'><FontAwesomeIcon icon={faEllipsisV} /></Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={() => console.log('clicked dropdown item')}>Delete</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </td>
       </tr>
     )

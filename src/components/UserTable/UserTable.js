@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import Axios from 'axios' 
 
+import moment from 'moment'
+
 import { Button, Table } from 'react-bootstrap'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -60,7 +62,7 @@ class UserRow extends React.Component {
         <td>{this.props.lastName}</td>
         <td>{this.props.email}</td>
         <td>{this.props.role}</td>
-        <td>{this.props.dateJoined}</td>
+        <td>{moment(this.props.dateJoined).format('MMMM Do YYYY')} <span className='small text-muted'>({moment(this.props.dateJoined).fromNow()})</span></td>
         <td className='text-right'>
           <Link to='/dashboard' className='btn btn-primary btn-sm'>View</Link>
           <Button variant='secondary' className='btn-sm ml-3'><FontAwesomeIcon icon={faEllipsisV} /></Button>

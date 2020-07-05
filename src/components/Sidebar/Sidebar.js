@@ -7,7 +7,7 @@ import { Nav } from 'react-bootstrap'
 import './Sidebar.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBox, faCog, faColumns, faFileAlt, faTruck, faUser, faUsers } from '@fortawesome/pro-regular-svg-icons'
+import { faBox, faCog, faColumns, faFileAlt, faTruck, faUser, faKey } from '@fortawesome/pro-regular-svg-icons'
 
 export default class Sidebar extends React.Component {
   constructor() {
@@ -22,7 +22,7 @@ export default class Sidebar extends React.Component {
         { label: 'Deliveries', icon: faTruck, url: '/deliveries' },
       ],
       bottomLinks: [
-        { label: 'Users', icon: faUsers, url: '/users' },
+        { label: 'Users', icon: faKey, url: '/users' },
         { label: 'Settings', icon: faCog, url: '/settings' }
       ]
     }
@@ -32,12 +32,12 @@ export default class Sidebar extends React.Component {
     let { links, bottomLinks } = this.state 
 
     return (
-      <section class="d-flex flex-column h-100">
+      <section className='d-flex flex-column h-100'>
         <Nav defaultActiveKey='/dashboard' className='flex-column py-5 sidebar'>
-          {links.map(x => <NavLink exact to={`/dashboard${x.url}`} className='nav-link' activeClassName='active'><FontAwesomeIcon icon={x.icon} className='mr-2' />{x.label}</NavLink>)}
+          {links.map(x => <NavLink exact to={`/dashboard${x.url}`} className='nav-link' activeClassName='active' key={x.label}><FontAwesomeIcon icon={x.icon} className='mr-2' />{x.label}</NavLink>)}
         </Nav>
         <Nav className='flex-column py-5 sidebar mt-auto'>
-          {bottomLinks.map(x => <NavLink exact to={`/dashboard${x.url}`} className='nav-link' activeClassName='active'><FontAwesomeIcon icon={x.icon} className='mr-2' />{x.label}</NavLink>)}
+          {bottomLinks.map(x => <NavLink exact to={`/dashboard${x.url}`} className='nav-link' activeClassName='active' key={x.label}><FontAwesomeIcon icon={x.icon} className='mr-2' />{x.label}</NavLink>)}
         </Nav>
       </section>
     )

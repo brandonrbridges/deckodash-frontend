@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+
+import { isAuthenticated } from '../../helpers/Authentication'
 
 import Axios from 'axios'
 
@@ -16,11 +18,14 @@ export default class DashboardProductSingle extends React.Component {
     super()
 
     this.state = {
+      auth: true,
       product: null
     }
   }
 
   componentDidMount() {
+    if(!isAuthenticated()) this.setState({ auth: false })
+
     const { match: { params } } = this.props
     
     Axios.get(`http://localhost:8080/api/products/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
@@ -28,22 +33,22 @@ export default class DashboardProductSingle extends React.Component {
   }
 
   render() {
-    let { product } = this.state
+    let { auth, product } = this.state
 
-    if(!product ) {
-      return <p>loading..</p>
-    } else {
-      return (
-        <DashboardLayout>
-          <Container fluid className='bg-white mb-4 py-5'>
-            <Link to='/dashboard/products' className='d-block mb-2'><FontAwesomeIcon icon={faLongArrowLeft} className='mr-2' />Return to products</Link>
-            <h1>{product.name}</h1>
-          </Container>
-          <Container fluid>
+    if(!auth) return <Redirect to='/login' />
 
-          </Container>
-        </DashboardLayout>
-      )
-    }
+    if(!product ) return <p>loading..</p>
+    
+    return (
+      <DashboardLayout>
+        <Container fluid className='bg-white mb-4 py-5'>
+          <Link to='/dashboard/products' className='d-block mb-2'><FontAwesomeIcon icon={faLongArrowLeft} className='mr-2' />Return to products</Link>
+          <h1>{product.name}</h1>
+        </Container>
+        <Container fluid>
+
+        </Container>
+      </DashboardLayout>
+    )
   }
 }

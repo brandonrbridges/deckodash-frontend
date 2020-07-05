@@ -4,6 +4,8 @@ import Axios from 'axios'
 
 import { Alert, Button, Col, Form } from 'react-bootstrap'
 
+import DeleteCustomerButton from '../DeleteCustomerButton/DeleteCustomerButton'
+
 export default class EditCustomerForm extends React.Component {
   constructor(props) {
     super(props)
@@ -51,7 +53,6 @@ export default class EditCustomerForm extends React.Component {
   
   render() {
     let { 
-      customer,
       first_name,
       last_name,
       address_line_one,
@@ -114,6 +115,7 @@ export default class EditCustomerForm extends React.Component {
             </Col>
           </Form.Row>
           <Button variant='primary' type='submit'>Update user</Button>
+          <DeleteCustomerButton customerId={this.props.customerId} className='float-right' />
         </Form>
       </>
     )

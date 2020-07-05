@@ -34,10 +34,10 @@ export default class DashboardLayout extends React.Component {
         <Navigation />
 
         <Row>
-          <Col className='bg-dark px-4' style={{ maxWidth: '12%' }}>
+          <Col className='bg-dark px-4' style={{ height: 'calc(100vh - 56px)', maxWidth: '12%' }}>
             <Sidebar />
           </Col>
-          <Col className='pl-0'>
+          <Col className='pb-5 px-0' style={{ height: 'calc(100vh - 56px)', overflowY: 'scroll' }}>
             {this.props.children}
           </Col>
         </Row>

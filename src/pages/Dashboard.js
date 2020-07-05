@@ -5,10 +5,12 @@ import React from 'react'
  */
 import { Link } from 'react-router-dom'
 
+import Axios from 'axios'
+
 /**
  * React Bootstrap
  */
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row, Table } from 'react-bootstrap'
 
 /**
  * Imports
@@ -32,7 +34,22 @@ import IconBubble from '../components/IconBubble/IconBubble'
 import { faFile, faUser, faUsers } from '@fortawesome/pro-solid-svg-icons'
 
 export default class Dashboard extends React.Component {
+  constructor() {
+    super() 
+
+    this.state = {
+      customers: []
+    }
+  }
+
+  componentDidMount() {
+    Axios.get('http://localhost:8080/api/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    .then(response => this.setState({ customers: response.data.customers }))
+  }
+  
   render() {
+    let { customers } = this.state
+
     return (
       <DashboardLayout id='Dashboard'>
         <Container fluid className='bg-dark dashboard-overview mb-4 py-5'>
@@ -76,7 +93,17 @@ export default class Dashboard extends React.Component {
           <Row className='mb-4'>
             <Col>
               <DashboardWidget title='New Customers'>
-                Hello
+                <Table borderless>
+                  <thead>
+                    <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {customers.map(x => <CustomerRow customerId={x._id} firstName={x.first_name} lastName={x.last_name} />)}
+                  </tbody>
+                </Table>
               </DashboardWidget>
             </Col>
             <Col>
@@ -114,6 +141,23 @@ export default class Dashboard extends React.Component {
           </Row>
         </Container>
       </DashboardLayout>
+    )
+  }
+}
+
+class CustomerRow extends React.Component {
+  render() {
+    return (
+      <tr>
+        <td className='small'>
+          <Link to={`/dashboard/customers/${this.props.customerId}`}>{this.props.firstName}</Link>
+        </td>
+        <td classNa me='small'>
+          <Link to={`/dashboard/customers/${this.props.customerId}`}>
+            {this.props.lastName}
+          </Link>
+        </td>
+      </tr>
     )
   }
 }

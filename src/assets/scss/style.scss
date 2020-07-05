@@ -42,6 +42,16 @@ body {
   border: 0;
   padding-left: .75rem;
   padding-right: .75rem;
+
+  &-danger {
+    background-color: rgba($danger, .25);
+    color: $danger;
+
+    &:hover {
+      background-color: $danger;
+      color: #FFF;
+    }
+  }
   
   &-primary {
     background-color: rgba($primary, .25);
@@ -89,6 +99,19 @@ body {
   &:focus {
     border-color: $primary;
     box-shadow: none;
+  }
+}
+
+.dropdown {
+  &.options {
+    display: inline-block;
+    
+    .dropdown-toggle {
+
+      &:after {
+        display: none;
+      }
+    }
   }
 }
 
