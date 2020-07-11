@@ -152,7 +152,7 @@ class CustomerRow extends React.Component {
         <td className='small'>
           <Link to={`/dashboard/customers/${this.props.customerId}`}>{this.props.firstName}</Link>
         </td>
-        <td classNa me='small'>
+        <td className='small'>
           <Link to={`/dashboard/customers/${this.props.customerId}`}>
             {this.props.lastName}
           </Link>

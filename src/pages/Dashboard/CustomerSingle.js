@@ -1,18 +1,24 @@
+/** React & Router */
 import React from 'react'
-
 import { Link, Redirect } from 'react-router-dom'
 
+/** Axios */
 import Axios from 'axios'
 
+/** Helpers */
 import { isAuthenticated } from '../../helpers/Authentication'
 
+/** React Bootstrap */
 import { Col, Container, Nav, Row, Tab } from 'react-bootstrap'
 
+/** Layouts */
 import DashboardLayout from '../../layouts/DashboardLayout'
 
+/** Components */
 import EditCustomerForm from '../../components/EditCustomerForm/EditCustomerForm'
 import DashboardWidget from '../../components/DashboardWidget/DashboardWidget'
 
+/** Font Awesome */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowLeft } from '@fortawesome/pro-solid-svg-icons'
 
@@ -34,11 +40,7 @@ export default class DashboardCustomerSingle extends React.Component {
     const { match: { params } } = this.props
     
     Axios.get(`http://localhost:8080/api/customers/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
-    .then(response => {
-      let { customer } = response.data
-
-      this.setState({ customer })
-    })
+    .then(response => this.setState({ customer: response.data.customer }))
   }
 
   handleChange = e => {
