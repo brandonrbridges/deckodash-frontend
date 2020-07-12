@@ -26,6 +26,7 @@ export default class Navigation extends React.Component {
 
   logout = () => {
     localStorage.removeItem('x-access-token')
+    localStorage.removeItem('x-access-token-expiration')
     this.setState({ auth: false })
   }
 
