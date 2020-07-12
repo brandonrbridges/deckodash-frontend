@@ -76,10 +76,10 @@ export default class DashboardProductSingle extends React.Component {
                   </DashboardWidget>
                 </Col>
                 <Col>
-                  <DashboardWidget title='Customer Details' className='mb-4'>
+                  <DashboardWidget title='Product Details' className='mb-4'>
                     This is the area to display customer details
                   </DashboardWidget>
-                  <DashboardWidget title='Customer Notes'>
+                  <DashboardWidget title='Product Notes'>
                     This is the area to enter customer notes
                   </DashboardWidget>
                 </Col>

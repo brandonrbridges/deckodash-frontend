@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { Button, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 import DashboardLayout from '../../layouts/DashboardLayout'
 
+import AddOrderButton from '../../components/AddOrderButton/AddOrderButton'
 import OrderTable from '../../components/OrderTable/OrderTable'
 
 export default class DashboardOrders extends React.Component {
@@ -12,10 +13,11 @@ export default class DashboardOrders extends React.Component {
       <DashboardLayout>
         <Container fluid className='bg-white mb-4 py-5'>
           <h1>Orders</h1>
-          <Button variant='success' className='float-right'>Add new order</Button>
         </Container>
         <Container fluid>
+          <AddOrderButton className='d-block mb-4' />
           <OrderTable />
+          <AddOrderButton className='d-block mt-4 ml-auto' />
         </Container>
       </DashboardLayout>
     )

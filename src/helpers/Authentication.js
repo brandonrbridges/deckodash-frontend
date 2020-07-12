@@ -6,6 +6,7 @@ export function fetchUser() {
   let decoded = jwt.decode(localStorage.getItem('x-access-token'))
 
   if(decoded) return {
+    _id: decoded._id,
     email: decoded.email,
     first_name: decoded.first_name,
     last_name: decoded.last_name,

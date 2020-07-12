@@ -59,7 +59,7 @@ export default class AddUserForm extends React.Component {
         <Form.Row className='mb-4'>
           <Col>
             <Form.Label>Role</Form.Label>
-            <Form.Control as='select' name='role' custom>
+            <Form.Control as='select' name='role' custom onChange={this.handleChange}>
               <option value='sales'>Sales Team</option>              
               <option value='delivery'>Delivery Team</option>
               <option value='manager'>Manager</option>

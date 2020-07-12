@@ -1,9 +1,13 @@
+/** React */
 import React from 'react'
 
+/** Axios */
 import Axios from 'axios'
 
+/** React Bootstrap */
 import { Alert, Button, Col, Form } from 'react-bootstrap'
 
+/** Components */
 import DeleteProductButton from '../DeleteProductButton/DeleteProductButton'
 
 export default class EditProductForm extends React.Component {
@@ -20,7 +24,7 @@ export default class EditProductForm extends React.Component {
       dimensions_height: null,
       dimensions_width: null,
       dimensions_depth: null,
-      category_id: null
+      // category_id: null
     }
   }
 
@@ -39,7 +43,7 @@ export default class EditProductForm extends React.Component {
         dimensions_height: product.dimensions.height,
         dimensions_width: product.dimensions.width,
         dimensions_depth: product.dimensions.depth,
-        category_id: product.category_id
+        // category_id: product.category_id
       })
     })
   }
@@ -61,7 +65,7 @@ export default class EditProductForm extends React.Component {
       dimensions_height,
       dimensions_width,
       dimensions_depth,
-      category_id
+      // category_id
     } = this.state
 
     return (

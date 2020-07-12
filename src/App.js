@@ -1,7 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import { fetchUser, isAuthenticated } from './helpers/Authentication'
+import { fetchUser } from './helpers/Authentication'
 
 import Dashboard from './pages/Dashboard'
 import DashboardCustomers from './pages/Dashboard/Customers'
@@ -15,13 +15,13 @@ import DashboardSettings from './pages/Dashboard/Settings'
 import DashboardUsers from './pages/Dashboard/Users'
 import Home from './pages/Home'
 import Login from './pages/Login'
+import PublicOrder from './pages/Public/PublicOrder'
 
 export default class App extends React.Component {
   constructor() {
     super()
 
     this.state = {
-      auth: true,
       user: {
         email: null,
         first_name: null,
@@ -32,25 +32,20 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    if(!isAuthenticated()) {
-      return this.setState({ auth: false })
+    if(fetchUser()) {
+      let jwtUser = fetchUser()
+      let newUser = this.state.user
+      newUser.email = jwtUser.email
+      newUser.first_name = jwtUser.first_name
+      newUser.last_name = jwtUser.last_name
+      newUser.role = jwtUser.role
+      this.setState({ user: newUser })
     }
-
-    let jwtUser = fetchUser()
-    let newUser = this.state.user
-    newUser.email = jwtUser.email
-    newUser.first_name = jwtUser.first_name
-    newUser.last_name = jwtUser.last_name
-    newUser.role = jwtUser.role
-    this.setState({ user: newUser })
   }
 
   render() {
-    let { auth } = this.state
-
     return (
       <Router>
-        {((auth) ? '' : <Redirect to='/login' />)}
         <Switch>
           <Route exact path='/' component={Home} />
 
@@ -73,6 +68,8 @@ export default class App extends React.Component {
           <Route exact path='/dashboard/settings' component={DashboardSettings} />
 
           <Route exact path='/dashboard/users' component={DashboardUsers} />
+
+          <Route exact path='/public/order/:id' component={PublicOrder} />
         </Switch>
       </Router>
     )
