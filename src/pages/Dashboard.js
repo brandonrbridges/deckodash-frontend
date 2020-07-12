@@ -31,7 +31,7 @@ import IconBubble from '../components/IconBubble/IconBubble'
 /**
  * Font Awesome
  */
-import { faFile, faUser, faUsers } from '@fortawesome/pro-solid-svg-icons'
+import { faFile, faFileAlt, faUser, faUsers } from '@fortawesome/pro-solid-svg-icons'
 
 export default class Dashboard extends React.Component {
   constructor() {
@@ -169,14 +169,19 @@ export default class Dashboard extends React.Component {
               <Link to='/dashboard/customers'>Lookup customers</Link>
             </Col>
             <Col>
-              <IconBubble icon={faFile} className='mb-3' />
-              <h6>Recent Activity</h6>
-              <Link to='/dashboard'>Review recent activity</Link>
+              <IconBubble icon={faFileAlt} className='mb-3' />
+              <h6>Order Lookup</h6>
+              <Link to='/dashboard/orders'>Lookup orders</Link>
             </Col>
             <Col>
               <IconBubble icon={faUsers} className='mb-3' />
               <h6>Manage Users</h6>
               <Link to='/dashboard/users'>Add or update users</Link>
+            </Col>
+            <Col>
+              <IconBubble icon={faFile} className='mb-3' />
+              <h6>Recent Activity</h6>
+              <Link to='/dashboard'>Review recent activity</Link>
             </Col>
           </Row>
         </Container>
