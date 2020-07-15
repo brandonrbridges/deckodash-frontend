@@ -23,7 +23,7 @@ export default class CustomerTable extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('http://localhost:8080/api/v1/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ customers: response.data.customers }))
   }
 
@@ -39,9 +39,7 @@ export default class CustomerTable extends React.Component {
         <thead>
           <tr>
             <th></th>
-            <th>Customer ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Name</th>
             <th>Date Added</th>
             <th>Last Updated</th>
             <th></th>
@@ -61,10 +59,10 @@ class CustomerRow extends React.Component {
       <tr>
         <td className='text-center' width='50px'><FontAwesomeIcon icon={faUser} className='text-center text-muted' /></td>
         <td>
-          <Link to={`/dashboard/customers/${this.props.id}`}>{this.props.id}</Link>
+          <Link to={`/dashboard/customers/${this.props.id}`}>
+            {this.props.firstName} {this.props.lastName}
+          </Link>
         </td>
-        <td>{this.props.firstName}</td>
-        <td>{this.props.lastName}</td>
         <td>{moment(this.props.dateAdded).format('MMMM Do YYYY')} <span className='small text-muted'>({moment(this.props.dateAdded).fromNow()})</span></td>
         <td>{moment(this.props.lastUpdated).format('MMMM Do YYYY')} <span className='small text-muted'>({moment(this.props.lastUpdated).fromNow()})</span></td>
         <td className='text-right'>

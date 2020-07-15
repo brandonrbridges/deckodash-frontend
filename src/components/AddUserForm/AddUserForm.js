@@ -29,7 +29,7 @@ export default class AddUserForm extends React.Component {
 
     console.log(this.state)
 
-    Axios.post('http://localhost:8080/api/users/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.post('http://localhost:8080/api/v1/users/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => console.log(response))
   }
 

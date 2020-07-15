@@ -25,7 +25,7 @@ export default class EditCustomerForm extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get(`http://localhost:8080/api/customers/${ this.props.customerId }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get(`http://localhost:8080/api/v1/customers/${ this.props.customerId }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => {
       let { customer } = response.data
 

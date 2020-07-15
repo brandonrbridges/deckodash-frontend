@@ -23,7 +23,7 @@ export default class UserTable extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/users', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('http://localhost:8080/api/v1/users', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ users: response.data.users }))
   }
   
@@ -35,9 +35,7 @@ export default class UserTable extends React.Component {
         <thead>
           <tr>
             <th></th>
-            <th>Staff ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Name</th>
             <th>Email</th>
             <th>Role</th>
             <th>Date Joined</th>
@@ -57,9 +55,11 @@ class UserRow extends React.Component {
     return (
       <tr>
         <td className='text-center' width='50px'><FontAwesomeIcon icon={faKey} className='text-center text-muted' /></td>
-        <td>{this.props.userId}</td>
-        <td>{this.props.firstName}</td>
-        <td>{this.props.lastName}</td>
+        <td>
+          <Link to={`/dashboard/users/${this.props.userId}`}>
+            {this.props.firstName} {this.props.lastName}
+          </Link>
+        </td>
         <td>{this.props.email}</td>
         <td>{this.props.role}</td>
         <td>{moment(this.props.dateJoined).format('MMMM Do YYYY')} <span className='small text-muted'>({moment(this.props.dateJoined).fromNow()})</span></td>

@@ -37,7 +37,7 @@ export default class DashboardProductSingle extends React.Component {
 
     const { match: { params } } = this.props
     
-    Axios.get(`http://localhost:8080/api/products/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get(`http://localhost:8080/api/v1/products/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ product: response.data.product }))
   }
 

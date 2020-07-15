@@ -29,7 +29,7 @@ export default class EditProductForm extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get(`http://localhost:8080/api/products/${ this.props.productId }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get(`http://localhost:8080/api/v1/products/${ this.props.productId }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => {
       let { product } = response.data
 

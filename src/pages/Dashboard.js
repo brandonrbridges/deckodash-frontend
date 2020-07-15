@@ -44,10 +44,10 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('http://localhost:8080/api/v1/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ customers: response.data.customers }))
 
-    Axios.get('http://localhost:8080/api/orders', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('http://localhost:8080/api/v1/orders', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ orders: response.data.orders }))
   }
   
@@ -58,6 +58,7 @@ export default class Dashboard extends React.Component {
     } = this.state
 
     let open_quotes = 0
+    let pending_invoices = 0
 
     return (
       <DashboardLayout id='Dashboard'>
@@ -77,10 +78,6 @@ export default class Dashboard extends React.Component {
               <p className='h1 text-white'>£0</p>
             </Col>
             <Col>
-              <p className='h6 text-muted'>Today's Orders</p>
-              <p className='h1 text-white'>0</p>
-            </Col>
-            <Col>
               <p className='h6 text-muted'>Open Quotes</p>
               <p className='h1 text-white'>
                 {
@@ -89,6 +86,17 @@ export default class Dashboard extends React.Component {
                   })
                 }
                 {open_quotes}
+              </p>
+            </Col>
+            <Col>
+              <p className='h6 text-muted'>Pending Invoices</p>
+              <p className='h1 text-white'>
+                {
+                  orders.forEach(x => {
+                    if(x.status === 'invoice') return pending_invoices++
+                  })
+                }
+                {pending_invoices}
               </p>
             </Col>
           </Row>
@@ -106,14 +114,13 @@ export default class Dashboard extends React.Component {
               </DashboardWidget>
             </Col>
           </Row>
-          <Row className='mb-4'>
+          <Row className='mb-5'>
             <Col>
               <DashboardWidget title='New Customers'>
                 <Table borderless>
                   <thead>
                     <tr>
-                      <th>First Name</th>
-                      <th>Last Name</th>
+                      <th>Name</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -124,27 +131,28 @@ export default class Dashboard extends React.Component {
             </Col>
             <Col>
               <DashboardWidget title='Pending Quotes'>
-                {
-                  orders
-                  .filter(x => {
-                    return x.status === 'quote'
-                  })
-                  .map(y => {
-                    return <p key={y.id}><a href={`/dashboard/orders/${y._id}`}>{y._id}</a></p>
-                  })
-                }
+                <Table borderless>
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      orders
+                      .filter(x => x.status === 'quote')
+                      .map(y => <OrderRow orderId={y.order_id} />)
+                    }
+                  </tbody>
+                </Table>
               </DashboardWidget>
             </Col>
             <Col>
               <DashboardWidget title='Pending Invoices'>
                 {
                   orders
-                  .filter(x => {
-                    return x.status === 'invoice'
-                  })
-                  .map(y => {
-                    return <p key={y.id}><a href={`/dashboard/orders/${y._id}`}>{y._id}</a></p>
-                  })
+                  .filter(x => x.status === 'invoice')
+                  .map(y => <OrderRow orderId={y.order_id} />)
                 }
               </DashboardWidget>
             </Col>
@@ -152,12 +160,8 @@ export default class Dashboard extends React.Component {
               <DashboardWidget title='Pending Delivery'>
                 {
                   orders
-                  .filter(x => {
-                    return x.status === 'pending-delivery'
-                  })
-                  .map(y => {
-                    return <p key={y.id}><a href={`/dashboard/orders/${y._id}`}>{y._id}</a></p>
-                  })
+                  .filter(x => x.status === 'pending-delivery')
+                  .map(y => <OrderRow orderId={y.order_id} />)
                 }
               </DashboardWidget>
             </Col>
@@ -194,12 +198,23 @@ class CustomerRow extends React.Component {
   render() {
     return (
       <tr>
-        <td className='small'>
-          <Link to={`/dashboard/customers/${this.props.customerId}`}>{this.props.firstName}</Link>
-        </td>
-        <td className='small'>
+        <td>
           <Link to={`/dashboard/customers/${this.props.customerId}`}>
-            {this.props.lastName}
+            {this.props.firstName} {this.props.lastName}
+          </Link>
+        </td>
+      </tr>
+    )
+  }
+}
+
+class OrderRow extends React.Component {
+  render() {
+    return (
+      <tr>
+        <td>
+          <Link to={`/dashboard/orders/${this.props.orderId}`}>
+            {this.props.orderId}
           </Link>
         </td>
       </tr>

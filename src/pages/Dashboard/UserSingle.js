@@ -18,14 +18,13 @@ import { Badge, Col, Container, Nav, Row, Tab, Table } from 'react-bootstrap'
 import DashboardLayout from '../../layouts/DashboardLayout'
 
 /** Components */
-import EditCustomerForm from '../../components/EditCustomerForm/EditCustomerForm'
 import DashboardWidget from '../../components/DashboardWidget/DashboardWidget'
 
 /** Font Awesome */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowLeft } from '@fortawesome/pro-solid-svg-icons'
 
-export default class DashboardCustomerSingle extends React.Component {
+export default class DashboardUserSingle extends React.Component {
   constructor(props) {
     super(props)
 
@@ -43,8 +42,8 @@ export default class DashboardCustomerSingle extends React.Component {
     
     const { match: { params } } = this.props
     
-    Axios.get(`http://localhost:8080/api/v1/customers/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
-    .then(response => this.setState({ customer: response.data.customer, order: response.data.order }))
+    Axios.get(`http://localhost:8080/api/v1/users/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    .then(response => this.setState({ order: response.data.order, user: response.data.user }))
   }
 
   handleChange = e => {
@@ -57,19 +56,19 @@ export default class DashboardCustomerSingle extends React.Component {
   render() {
     let { 
       auth,
-      customer,
+      user,
       order
     } = this.state
 
     if(!auth) return <Redirect to='/login' />
 
-    if(!customer ) return <p>loading..</p>
+    if(!user ) return <p>loading..</p>
 
     return (
       <DashboardLayout>
         <Container fluid className='bg-white pt-5 pb-4'>
-          <Link to='/dashboard/customers' className='d-block mb-2'><FontAwesomeIcon icon={faLongArrowLeft} className='mr-2' />Return to customers</Link>
-          <h1>{customer.first_name + ' ' + customer.last_name}</h1>
+          <Link to='/dashboard/users' className='d-block mb-2'><FontAwesomeIcon icon={faLongArrowLeft} className='mr-2' />Return to users</Link>
+          <h1>{user.first_name + ' ' + user.last_name}</h1>
         </Container>
 
         <Tab.Container defaultActiveKey='summary'>
@@ -105,8 +104,10 @@ export default class DashboardCustomerSingle extends React.Component {
                                 {x.order_id}
                               </Link>
                             </td>
-                            <td><Badge variant={x.status}>{x.status}</Badge></td>
-                            <td>{moment(x.date_created).format('MMMM Do YYYY')} <span className='small text-muted'>({moment(x.date_created).fromNow()})</span></td>
+                            <td>
+                              <Badge variant={x.status}>{x.status}</Badge>
+                            </td>
+                            <td>{moment(x.date_created).format('Do MMMM YYYY')} <span className='small text-muted'>({moment(x.date_created).fromNow()})</span></td>
                           </tr>
                         )}
                       </tbody>
@@ -114,11 +115,12 @@ export default class DashboardCustomerSingle extends React.Component {
                   </DashboardWidget>
                 </Col>
                 <Col>
-                  <DashboardWidget title='Customer Details' className='mb-4'>
-                    This is the area to display customer details
+                  <DashboardWidget title='User Details' className='mb-4'>
+                    <p className=''><b>Role:</b> {user.role}</p>
+                    <p className=''><b>Date Joined:</b> {moment(user.date_created).format('Do MMMM YYYY')} <span className='small text-muted'>({moment(user.date_created).fromNow()})</span></p>
                   </DashboardWidget>
-                  <DashboardWidget title='Customer Notes'>
-                    This is the area to enter customer notes
+                  <DashboardWidget title='User Notes'>
+                    This is the area to enter user notes (only manager's can see this)
                   </DashboardWidget>
                 </Col>
               </Row>
@@ -126,8 +128,7 @@ export default class DashboardCustomerSingle extends React.Component {
               
             </Tab.Pane>
             <Tab.Pane eventKey='information'>
-              <DashboardWidget title={`Edit ${customer.first_name} ${customer.last_name}'s details`}>
-                <EditCustomerForm customerId={customer._id} />
+              <DashboardWidget title={`Edit ${user.first_name} ${user.last_name}'s details`}>
               </DashboardWidget>
             </Tab.Pane>
           </Tab.Content>

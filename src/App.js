@@ -7,15 +7,18 @@ import Dashboard from './pages/Dashboard'
 import DashboardCustomers from './pages/Dashboard/Customers'
 import DashboardCustomerSingle from './pages/Dashboard/CustomerSingle'
 import DashboardDeliveries from './pages/Dashboard/Deliveries'
+import PublicInvoice from './pages/Public/PublicInvoice'
 import DashboardOrders from './pages/Dashboard/Orders'
 import DashboardOrderSingle from './pages/Dashboard/OrderSingle'
 import DashboardProducts from './pages/Dashboard/Products'
 import DashboardProductSingle from './pages/Dashboard/ProductSingle'
 import DashboardSettings from './pages/Dashboard/Settings'
+import DashboardStatistics from './pages/Dashboard/Statistics'
 import DashboardUsers from './pages/Dashboard/Users'
+import DashboardUserSingle from './pages/Dashboard/UserSingle'
 import Home from './pages/Home'
 import Login from './pages/Login'
-import PublicOrder from './pages/Public/PublicOrder'
+import PublicOrder from './pages/Public/PublicQuote'
 
 export default class App extends React.Component {
   constructor() {
@@ -59,6 +62,8 @@ export default class App extends React.Component {
           <Route exact path='/dashboard/deliveries' component={DashboardDeliveries} />
           <Route exact path='/dashboard/deliveries/:id' component={DashboardDeliveries} />
 
+          <Route exact path='/invoice/:id' component={PublicInvoice} />
+
           <Route exact path='/dashboard/orders' component={DashboardOrders} />
           <Route exact path='/dashboard/orders/:id' component={DashboardOrderSingle} />
           
@@ -67,9 +72,12 @@ export default class App extends React.Component {
 
           <Route exact path='/dashboard/settings' component={DashboardSettings} />
 
-          <Route exact path='/dashboard/users' component={DashboardUsers} />
+          <Route exact path='/dashboard/statistics' component={DashboardStatistics} />
 
-          <Route exact path='/public/order/:id' component={PublicOrder} />
+          <Route exact path='/dashboard/users' component={DashboardUsers} />
+          <Route exact path='/dashboard/users/:id' component={DashboardUserSingle} />
+
+          <Route exact path='/quote/:id' component={PublicOrder} />
         </Switch>
       </Router>
     )

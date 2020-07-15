@@ -24,7 +24,7 @@ export default class AddOrderForm extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('http://localhost:8080/api/v1/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ customers: response.data.customers }))
 
     if(fetchUser()) {
@@ -46,7 +46,7 @@ export default class AddOrderForm extends React.Component {
 
     console.log(this.state)
 
-    Axios.post('http://localhost:8080/api/orders/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.post('http://localhost:8080/api/v1/orders/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => console.log(response))
   }
 

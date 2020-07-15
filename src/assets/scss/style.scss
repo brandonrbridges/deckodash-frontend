@@ -30,6 +30,13 @@ a {
 .badge {
   font-family: ProximaNova;
   font-weight: 400;
+  padding: .3rem .5rem .2rem .5rem;
+
+  &-invoice {
+    background-color: rgba($primary, .25);
+    color: darken($primary, 10);
+    text-transform: uppercase;
+  }
 
   &-large {
     font-size: 1rem;
@@ -39,11 +46,25 @@ a {
   &-primary {
     background-color: rgba($primary, .75);
   }
+
+  &-quote {
+    background-color: rgba($warning, .25);
+    color: darken($warning, 10);
+    text-transform: uppercase;
+  }
 }
 
 .bg {
   &-dark {
     background-color: $bgDark !important;
+
+    .border,
+    .border-top,
+    .border-right,
+    .border-bottom,
+    .border-left {
+      border-color: darken($bgDark, 8) !important;
+    }
   }
 }
 

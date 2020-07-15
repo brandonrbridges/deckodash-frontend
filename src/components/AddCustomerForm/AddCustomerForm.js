@@ -36,7 +36,7 @@ export default class AddCustomerForm extends React.Component {
 
     console.log(this.state)
 
-    Axios.post('http://localhost:8080/api/customers/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.post('http://localhost:8080/api/v1/customers/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ done: true }))
   }
 

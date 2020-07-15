@@ -23,7 +23,7 @@ export default class ProductTable extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/products', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('http://localhost:8080/api/v1/products', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ products: response.data.products }))
   }
   
@@ -39,7 +39,6 @@ export default class ProductTable extends React.Component {
         <thead>
           <tr>
             <th></th>
-            <th>Product ID</th>
             <th>Name</th>
             <th>Price</th>
             <th>Sale Price</th>
@@ -62,9 +61,10 @@ class OrderRow extends React.Component {
       <tr>
         <td className='text-center' width='50px'><FontAwesomeIcon icon={faBox} className='text-center text-muted' /></td>
         <td>
-          <Link to={`/dashboard/products/${this.props.productId}`}>{this.props.productId}</Link>
+          <Link to={`/dashboard/products/${this.props.productId}`}>
+            {this.props.name}
+          </Link>
         </td>
-        <td>{this.props.name}</td>
         <td>£{this.props.price}</td>
         <td>£{this.props.salePrice}</td>
         <td>{this.props.sku}</td>

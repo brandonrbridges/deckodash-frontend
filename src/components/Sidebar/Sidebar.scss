@@ -26,5 +26,16 @@
         width: 5px;
       }
     }
+
+    &.disabled {
+      color: rgba(#FFF, .2) !important;
+      cursor: not-allowed !important;
+      pointer-events: none !important;
+
+      &:after {
+        content: ' (coming soon)';
+        font-size: .6rem;
+      }
+    }
   }
 }
