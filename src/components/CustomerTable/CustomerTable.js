@@ -2,7 +2,8 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import Axios from 'axios'
+// import Axios from 'axios'
+import Axios from '../../config/axios'
 
 import moment from 'moment'
 
@@ -23,7 +24,7 @@ export default class CustomerTable extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/v1/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ customers: response.data.customers }))
   }
 

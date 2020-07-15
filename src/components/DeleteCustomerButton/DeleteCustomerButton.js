@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Redirect } from 'react-router-dom'
 
-import Axios from 'axios'
+import Axios from '../../config/axios'
 
 import { Button, Modal } from 'react-bootstrap'
 
@@ -22,7 +22,7 @@ export default class DeleteCustomerButton extends React.Component {
   handleClose = () => this.setState({ showModal: false })
 
   handleDelete = (_id) => {
-    Axios.delete('http://localhost:8080/api/v1/customers/delete', { data: { _id }, headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.delete('customers/delete', { data: { _id }, headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     this.setState({ deleted: true })
   }
 

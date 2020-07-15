@@ -2,7 +2,7 @@
 import React from 'react'
 
 /** Axios */
-import Axios from 'axios'
+import Axios from '../../config/axios'
 
 /** Helpers */
 import { fetchUser } from '../../helpers/Authentication'
@@ -24,7 +24,7 @@ export default class AddOrderForm extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/v1/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ customers: response.data.customers }))
 
     if(fetchUser()) {

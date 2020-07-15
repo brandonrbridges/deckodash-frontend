@@ -1,16 +1,22 @@
+/** React & React Router */
 import React from 'react'
-
 import { Link } from 'react-router-dom'
 
-import Axios from 'axios'
+/** Axios */
+import Axios from '../../config/axios'
 
+/** Modules */
 import moment from 'moment'
 
+/** React Bootstrap */
 import { Button, Table } from 'react-bootstrap'
 
+
+/** Font Awesome */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBox, faEllipsisV } from '@fortawesome/pro-solid-svg-icons'
 
+/** Stylesheet */
 import './ProductTable.scss'
 
 export default class ProductTable extends React.Component {
@@ -23,7 +29,7 @@ export default class ProductTable extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/v1/products', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('products', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ products: response.data.products }))
   }
   

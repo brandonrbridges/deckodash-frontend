@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Axios from 'axios'
+import Axios from '../../config/axios'
 
 import { Button, Col, Form, InputGroup } from 'react-bootstrap'
 
@@ -32,7 +32,7 @@ export default class AddProductForm extends React.Component {
 
     console.log(this.state)
 
-    Axios.post('http://localhost:8080/api/v1/products/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.post('products/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => console.log(response))
   }
 

@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 /** Axios */
-import Axios from 'axios'
+import Axios from '../../config/axios'
 
 /** Moment */
 import moment from 'moment'
@@ -26,7 +26,7 @@ export default class OrderTable extends React.Component {
   }
   
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/v1/orders', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('orders', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ orders: response.data.orders }))
   }
   

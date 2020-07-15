@@ -1,13 +1,16 @@
+/** React & React Router */
 import React from 'react'
-
 import { NavLink } from 'react-router-dom'
 
+/** React Bootstrap */
 import { Nav } from 'react-bootstrap'
 
-import './Sidebar.scss'
-
+/** Font Awesome */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBox, faCog, faColumns, faFileAlt, faKey, faPoll, faTruck, faUser, faUserChart } from '@fortawesome/pro-regular-svg-icons'
+
+/** Stylesheet */
+import './Sidebar.scss'
 
 export default class Sidebar extends React.Component {
   constructor() {

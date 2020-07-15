@@ -1,36 +1,24 @@
+/** React & React Router */
 import React from 'react'
-
-/**
- * React Router
- */
 import { Link } from 'react-router-dom'
 
-import Axios from 'axios'
+/** Axios */
+import Axios from '../config/axios'
 
-/**
- * React Bootstrap
- */
+/** React Bootstrap */
 import { Col, Container, Row, Table } from 'react-bootstrap'
 
-/**
- * Imports
- */
+/** Modules */
 import moment from 'moment'
 
-/**
- * Layout
- */
+/** Layouts */
 import DashboardLayout from '../layouts/DashboardLayout'
 
-/**
- * Component
- */
+/** Components */
 import DashboardWidget from '../components/DashboardWidget/DashboardWidget'
 import IconBubble from '../components/IconBubble/IconBubble'
 
-/**
- * Font Awesome
- */
+/** Font Awesome */
 import { faFile, faFileAlt, faUser, faUsers } from '@fortawesome/pro-solid-svg-icons'
 
 export default class Dashboard extends React.Component {
@@ -44,10 +32,10 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/v1/customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('customers', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ customers: response.data.customers }))
 
-    Axios.get('http://localhost:8080/api/v1/orders', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('orders', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ orders: response.data.orders }))
   }
   

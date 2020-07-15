@@ -1,17 +1,19 @@
+/** React & React Router */
 import React from 'react'
-
 import { Link } from 'react-router-dom'
 
-import Axios from 'axios' 
+/** Axios */
+import Axios from '../../config/axios' 
 
+/** Modukles */
 import moment from 'moment'
 
+/** React Bootstrap */
 import { Button, Table } from 'react-bootstrap'
 
+/** Font Awesome */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faKey, faEllipsisV } from '@fortawesome/pro-solid-svg-icons'
-
-// import './StaffTable.scss'
 
 export default class UserTable extends React.Component {
   constructor() {
@@ -23,7 +25,7 @@ export default class UserTable extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:8080/api/v1/users', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('users', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ users: response.data.users }))
   }
   

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Redirect } from 'react-router-dom'
 
-import Axios from 'axios'
+import Axios from '../../config/axios'
 
 import { Button, Col, Form } from 'react-bootstrap'
 
@@ -36,7 +36,7 @@ export default class AddCustomerForm extends React.Component {
 
     console.log(this.state)
 
-    Axios.post('http://localhost:8080/api/v1/customers/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.post('customers/new', this.state, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ done: true }))
   }
 

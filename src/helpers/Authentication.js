@@ -1,4 +1,4 @@
-import Axios from 'axios'
+import Axios from '../config/axios' 
 
 import jwt from 'jsonwebtoken'
 
@@ -19,7 +19,7 @@ export function isAuthenticated() {
 }
 
 export function login(data) {
-  return Axios.post('http://localhost:8080/auth/', { email: data.email, password: data.password })
+  return Axios.post('auth', { email: data.email, password: data.password })
   .then(response => {
     localStorage.setItem('x-access-token', response.data.token)
     localStorage.setItem('x-access-token-expiration', Date.now() + 2 * 60 * 60 * 1000)
