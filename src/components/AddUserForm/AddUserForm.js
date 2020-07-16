@@ -66,7 +66,7 @@ export default class AddUserForm extends React.Component {
             </Form.Control>
           </Col>
         </Form.Row>
-        <Button type='submit' variant='success' className='d-block ml-auto'>Add Customer</Button>
+        <Button type='submit' variant='success' className='d-block ml-auto'>Add User</Button>
       </Form>
     )
   }
