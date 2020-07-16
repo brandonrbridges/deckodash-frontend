@@ -137,20 +137,38 @@ export default class Dashboard extends React.Component {
             </Col>
             <Col>
               <DashboardWidget title='Pending Invoices'>
-                {
-                  orders
-                  .filter(x => x.status === 'invoice')
-                  .map(y => <OrderRow orderId={y.order_id} />)
-                }
+                <Table borderless>
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      orders
+                      .filter(x => x.status === 'invoice')
+                      .map(y => <OrderRow orderId={y.order_id} />)
+                    }
+                  </tbody>
+                </Table>
               </DashboardWidget>
             </Col>
             <Col>
               <DashboardWidget title='Pending Delivery'>
-                {
-                  orders
-                  .filter(x => x.status === 'pending-delivery')
-                  .map(y => <OrderRow orderId={y.order_id} />)
-                }
+                <Table borderless>
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      orders
+                      .filter(x => x.status === 'pending-delivery')
+                      .map(y => <OrderRow orderId={y.order_id} />)
+                    }
+                  </tbody>
+                </Table>
               </DashboardWidget>
             </Col>
           </Row>
