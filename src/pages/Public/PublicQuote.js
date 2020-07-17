@@ -24,7 +24,7 @@ export default class PublicQuote extends React.Component {
   componentDidMount() {
     const { match: { params } } = this.props
     
-    Axios.get(`http://localhost:8080/api/v1/public/${ params.id }`)
+    Axios.get(`public/${ params.id }`)
     .then(response => this.setState({ 
       customer: response.data.customer,
       order: response.data.order,

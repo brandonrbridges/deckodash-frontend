@@ -42,7 +42,7 @@ export default class DashboardUserSingle extends React.Component {
     
     const { match: { params } } = this.props
     
-    Axios.get(`http://localhost:8080/api/v1/users/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get(`users/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ order: response.data.order, user: response.data.user }))
   }
 

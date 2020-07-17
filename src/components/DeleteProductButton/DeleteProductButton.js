@@ -22,7 +22,7 @@ export default class DeleteProductButton extends React.Component {
   handleClose = () => this.setState({ showModal: false })
 
   handleDelete = (_id) => {
-    Axios.delete('http://localhost:8080/api/v1/products/delete', { data: { _id }, headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.delete('products/delete', { data: { _id }, headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     this.setState({ deleted: true })
   }
 

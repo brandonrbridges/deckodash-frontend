@@ -38,7 +38,7 @@ export default class DashboardOrderSingle extends React.Component {
     
     const { match: { params } } = this.props
     
-    Axios.get(`http://localhost:8080/api/v1/orders/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get(`orders/${ params.id }`, { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ 
       customer: response.data.customer,
       order: response.data.order,
