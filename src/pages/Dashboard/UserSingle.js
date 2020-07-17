@@ -3,7 +3,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 
 /** Axios */
-import Axios from 'axios'
+import Axios from '../../config/axios'
 
 /** Modules */
 import moment from 'moment'

@@ -2,7 +2,7 @@
 import React from 'react'
 
 /** Axios */
-import Axios from 'axios'
+import Axios from '../../config/axios'
 
 /** React Bootstrap */
 import { Badge, Button, Col, Container, Row } from 'react-bootstrap'

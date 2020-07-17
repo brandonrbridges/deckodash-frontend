@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Redirect } from 'react-router-dom'
 
-import Axios from 'axios'
+import Axios from '../../config/axios'
 
 import { Button, Modal } from 'react-bootstrap'
 
