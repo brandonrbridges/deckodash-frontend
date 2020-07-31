@@ -9,7 +9,7 @@ import Axios from '../../config/axios'
 import moment from 'moment'
 
 /** React Bootstrap */
-import { Badge, Button, Table } from 'react-bootstrap'
+import { Badge, Button, Form, Table } from 'react-bootstrap'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileAlt, faEllipsisV } from '@fortawesome/pro-solid-svg-icons'
@@ -26,10 +26,10 @@ export default class OrderTable extends React.Component {
   }
   
   componentDidMount() {
-    Axios.get('orders', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get('orders?status=accepted', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ orders: response.data.orders }))
   }
-  
+
   render() {
     let { orders } = this.state
 
@@ -38,23 +38,25 @@ export default class OrderTable extends React.Component {
     }
 
     return (
-      <Table borderless responsive>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Order ID</th>
-            <th>Customer Name</th>
-            <th>Value</th>
-            <th>Product Count</th>
-            <th>Stage</th>
-            <th>Order Date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map(x => <OrderRow orderId={x.order_id} customer={x.customer} productCount={x.products.length} status={x.status} orderDate={x.date_created} />)}
-        </tbody>
-      </Table>
+      <>
+        <Table borderless responsive>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Order ID</th>
+              <th>Customer Name</th>
+              <th>Value</th>
+              <th>Product Count</th>
+              <th>Status</th>
+              <th>Order Date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map(x => <OrderRow orderId={x.order_id} customer={x.customer} productCount={x.products.length} status={x.status} orderDate={x.date_created} />)}
+          </tbody>
+        </Table>
+      </>
     )
   }
 }

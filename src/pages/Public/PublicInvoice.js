@@ -1,5 +1,6 @@
 /** React & Router */
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 
 /** Axios */
 import Axios from '../../config/axios'
@@ -43,7 +44,7 @@ export default class PublicInvoice extends React.Component {
     
     if(!order) return <p>No order found with this ID..</p>
 
-    if(order.status === 'quote') return <p>This order is not ready to be invoiced yet</p>
+    if(order.status === 'quote') return <Redirect to={`/quote/${ order._id}`} />
 
     return (
       <>

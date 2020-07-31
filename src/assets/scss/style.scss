@@ -31,6 +31,18 @@ a {
   font-family: ProximaNova;
   font-weight: 400;
   padding: .3rem .5rem .2rem .5rem;
+  
+  &-accepted {
+    background-color: rgba($success, .25);
+    color: darken($success, 10);
+    text-transform: uppercase;
+  }
+
+  &-declined {
+    background-color: rgba($danger, .25);
+    color: darken($danger, 10);
+    text-transform: uppercase;
+  }
 
   &-invoice {
     background-color: rgba($primary, .25);
