@@ -70,15 +70,18 @@ export default class DashboardOrderSingle extends React.Component {
           <Row>
             <Col>
               <DashboardWidget title='Items'>
-                Content here
+                {JSON.stringify(order.products)}
               </DashboardWidget>
               <DashboardWidget title='Tools'>
                 <Link to={`/${order.status}/${order._id}`}>View Public Link</Link>
               </DashboardWidget>
+              <DashboardWidget title='Delivery Map'>
+                {(order.status == 'pending-delivery' ? <DeliveryMap address={customer.address} /> : '')}
+              </DashboardWidget>
             </Col>
             <Col>
               <DashboardWidget title='Total'>
-
+                <h2>£1000</h2>
               </DashboardWidget>
               <DashboardWidget title='Customer Information'>
                 <p className='font-weight-bold mb-0'>{customer.first_name} {customer.last_name}</p>
@@ -101,6 +104,14 @@ export default class DashboardOrderSingle extends React.Component {
           </Row>
         </Container>
       </DashboardLayout>
+    )
+  }
+}
+
+class DeliveryMap extends React.Component {
+  render() {
+    return (
+      <div className='bg-light p-5'>Map</div>
     )
   }
 }

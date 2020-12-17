@@ -51,10 +51,12 @@ export default class PublicQuote extends React.Component {
     
     if(!order) return <p>No order found with this ID..</p>
 
-    if(order.status === 'accepted') return <p>This quote has been accepted</p>
-    
-    if (order.status === 'declined') return <p>This quote has been declined</p>
+    if(order.quote_accepted !== null) {
+      if(order.quote_accepted) return <p>This quote has been accepted</p>
+      else return <p>This quote has been declined</p>
+    }
 
+    
     if(order.status === 'invoice') return <Redirect to={`/invoice/${ order._id}`} />
 
     return (

@@ -46,6 +46,7 @@ export default class Dashboard extends React.Component {
     } = this.state
 
     let open_quotes = 0
+    let pending_delivery = 0
     let pending_invoices = 0
 
     return (
@@ -60,10 +61,6 @@ export default class Dashboard extends React.Component {
             <Col>
               <p className='h6 text-muted'>Total Orders in {moment(new Date()).format('MMMM')}</p>
               <p className='h1 text-white'>0</p>
-            </Col>
-            <Col>
-              <p className='h6 text-muted'>Today's Revenue</p>
-              <p className='h1 text-white'>£0</p>
             </Col>
             <Col>
               <p className='h6 text-muted'>Open Quotes</p>
@@ -85,6 +82,17 @@ export default class Dashboard extends React.Component {
                   })
                 }
                 {pending_invoices}
+              </p>
+            </Col>
+            <Col>
+              <p className='h6 text-muted'>Pending Delivery</p>
+              <p className='h1 text-white'>
+                {
+                  orders.forEach(x => {
+                    if(x.status === 'pending-delivery') return pending_delivery++
+                  })
+                }
+                {pending_delivery}
               </p>
             </Col>
           </Row>

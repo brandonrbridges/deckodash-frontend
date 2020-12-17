@@ -17,8 +17,8 @@ import { faFileAlt, faEllipsisV } from '@fortawesome/pro-solid-svg-icons'
 import './OrderTable.scss'
 
 export default class OrderTable extends React.Component {
-  constructor() {
-    super() 
+  constructor(props) {
+    super(props) 
 
     this.state = {
       orders: []
@@ -26,7 +26,7 @@ export default class OrderTable extends React.Component {
   }
   
   componentDidMount() {
-    Axios.get('orders?status=accepted', { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
+    Axios.get((this.props.status ? `orders?status=${this.props.status}` : 'orders'), { headers: { 'x-access-token': localStorage.getItem('x-access-token') } })
     .then(response => this.setState({ orders: response.data.orders }))
   }
 

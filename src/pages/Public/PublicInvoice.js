@@ -6,7 +6,10 @@ import { Redirect } from 'react-router-dom'
 import Axios from '../../config/axios'
 
 /** React Bootstrap */
-import { Badge, Col, Container, Row } from 'react-bootstrap'
+import { Badge, Button, Col, Container, Row } from 'react-bootstrap'
+
+/** Stripe */
+// Stripe Integration Here
 
 /** Components */
 import DashboardWidget from '../../components/DashboardWidget/DashboardWidget'
@@ -31,6 +34,13 @@ export default class PublicInvoice extends React.Component {
       order: response.data.order,
       user: response.data.user
     }))
+  }
+
+  handleInput = (accepted) => {
+    const { match: { params } } = this.props 
+
+    Axios.put(`public/${ params.id }/update?payment_success=${ accepted }`)
+    .then(response => this.setState({ order: response.data.order }))
   }
 
   render() {
@@ -102,6 +112,8 @@ export default class PublicInvoice extends React.Component {
           </DashboardWidget>
           <DashboardWidget title='Payment'>
             <p className='small text-muted'>Stripe Payment Form to be put here</p>
+            <Button variant='success' className='mr-4' onClick={() => { this.handleInput(true) }}>Payment Success</Button>
+            <Button variant='danger' className='mr-4' onClick={() => { this.handleInput(false) }}>Payment Declined</Button>
           </DashboardWidget>
         </Container>
       </>
